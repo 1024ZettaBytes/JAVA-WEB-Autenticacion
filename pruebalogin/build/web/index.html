@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="337577168868-g57jh84m7ar2gbqijhmorv73obbue4hc.apps.googleusercontent.com">
+    </head>
+    <body>
+        <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+      <img id="myImg"><br>
+      <p id="name"></p>
+      <div id="status">
+   </div>
+   <script type="text/javascript">
+      function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      var imagurl=profile.getImageUrl();
+      var name=profile.getName();
+      var email=profile.getEmail();
+      document.getElementById("myImg").src = imagurl;
+      document.getElementById("name").innerHTML = name;
+      document.getElementById("myP").style.visibility = "hidden";
+      document.getElementById("status").innerHTML = 'Bienvenido '+name+'! <a href=success.jsp?email='+email+'&name='+name+'/>Continuar con Login de google</a></p>';
+   }
+   </script>
+   <button onclick="salir()">Cerrar Sesión</button>
+   <script>
+      function salir() {
+      gapi.auth2.getAuthInstance().disconnect();
+      location.reload();
+   }
+   </script>
+    </body>
+</html>
